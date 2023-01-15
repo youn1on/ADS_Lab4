@@ -9,7 +9,13 @@ class Creature:
         self.weight = sum([i.weight for (i, g) in zip(item_set, chromosome) if g])
 
     def crossover(self, another_creature, weight_limit):
-        pass
+        l = len(self.chromosome)
+        child1 = self.chromosome[:int(l/3)]+another_creature.chromosome[int(l/3):int(2*l/3)]+self.chromosome[int(2*l/3):]
+        child2 = another_creature.chromosome[:int(l/3)]+self.chromosome[int(l/3):int(2*l/3)]+another_creature.chromosome[int(2*l/3):]
+        child_creature1 = Creature(child1, self.item_set)
+        child_creature2 = Creature(child2, self.item_set)
+        return [ch for ch in [child_creature1, child_creature2] if ch.weight <= weight_limit]
+
 
     def mutation_at(self, pos: int):
         if 0 > pos > len(self.chromosome):
