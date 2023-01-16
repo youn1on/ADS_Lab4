@@ -5,8 +5,12 @@ from creature import Creature
 
 def show_statistics(b, w):
     y_values = [iteration for iteration in range(len(b))]
-    plt.plot(y_values, b, 'g')
-    plt.plot(y_values, w, 'r')
+    plt.plot(y_values, b, 'g', label="Найкращі рішення")
+    plt.plot(y_values, w, 'r', label="Найгірші рішення")
+    plt.title("Графік залежності розв'язку від числа ітерацій")
+    plt.xlabel("Число ітерацій")
+    plt.ylabel("Якість рішення")
+    plt.legend()
     plt.show()
 
 
@@ -31,3 +35,9 @@ def print_best(best: Creature, item_set: list[BagItem], iteration: int):
         print(f"Цінність: {item.value} Вага: {item.weight}")
     print(f"Ітерація, на якій було знайдено найкраще значення: {iteration}")
     print()
+
+
+def print_goal_function(goal_function: list[int]):
+    for i in range(0, len(goal_function), len(goal_function)//20):
+        print(f"{i+1}: {goal_function[i]}")
+    print(f"{len(goal_function)}: {goal_function[-1]}")

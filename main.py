@@ -10,13 +10,13 @@ if __name__ == "__main__":
     print_start_populatiion(start_population)
     ga = GeneticAlgo(start_population, 200)
     best, worst = [], []
-    for i in range(10000):
+    for i in range(5000):
         ga.run_iteration()
         best.append(ga.population[ga.best].value)
         worst.append(ga.population[ga.worst].value)
     iteration = best.index(max(best))
     print_best(ga.population[ga.best], item_set, iteration)
     show_statistics(best, worst)
-
+    #print_goal_function(best)
 
 
